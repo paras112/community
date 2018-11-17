@@ -56,7 +56,7 @@ def get_remote_url():
     """
     # Netlify doesnt have any git remotes
     # It only sets the REPOSITORY_URL
-    url = os.environ.get('REPOSITORY_URL')
+    url = os.environ.get('git@github.com:paras112/community.git')
     if not url:
         remote = get_config_remote()
         assert remote[0][0] == 'url'
@@ -64,6 +64,7 @@ def get_remote_url():
 
     try:
         url = giturlparse.parse(url)
+        print(url)
     except giturlparse.parser.ParserError:
         url = giturlparse.parse(url + '.git')
     return url
